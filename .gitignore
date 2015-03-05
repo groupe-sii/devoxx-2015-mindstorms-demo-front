@@ -1,0 +1,11 @@
+node_modules
+dist
+src/vendor
+src/css
+src/fonts
+TODO.md
+src/js/templates.js
+docs
+report.xml
+reports
+lcov.info
