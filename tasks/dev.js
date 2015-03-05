@@ -4,7 +4,8 @@ var gulp = require('gulp'),
     $ = require('gulp-load-plugins')({
         pattern: ['gulp-*', 'del', 'run-sequence'],
         rename: {
-            'gulp-angular-architecture-graph': 'angularArchitectureGraph'
+            'gulp-angular-architecture-graph': 'angularArchitectureGraph',
+            'gulp-ng-constant': 'ngConstant'
         }
     });
 
@@ -19,6 +20,18 @@ module.exports = function(basePaths) {
             ])
             .pipe($.less())
             .pipe(gulp.dest(basePaths.src + 'css'));
+    });
+
+    // Dev config
+
+    gulp.task('dev:config', function() {
+        var _option = require('../config/dev/config.json');
+        return $.ngConstant({
+                name: 'ev3Config',
+                constants: _option,
+                stream: true
+            })
+            .pipe(gulp.dest(basePaths.src + '/js'));
     });
 
     // WATCHER

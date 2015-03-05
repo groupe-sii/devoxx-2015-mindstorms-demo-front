@@ -5,7 +5,8 @@ var gulp = require('gulp'),
     $ = require('gulp-load-plugins')({
         pattern: ['gulp-*', 'run-sequence', 'del'],
         rename: {
-            'gulp-angular-templatecache': 'templateCache'
+            'gulp-angular-templatecache': 'templateCache',
+            'gulp-ng-constant': 'ngConstant'
         }
     });
 
@@ -19,6 +20,16 @@ module.exports = function(basePaths) {
 
     gulp.task('plato', function() {
         return plato.inspect(basePaths.src + 'js/**/*.js', 'reports/plato/', {}, function() {});
+    });
+
+    gulp.task('ev3:config', function() {
+        var _option = require('../config/ev3/config.json');
+        return $.ngConstant({
+                name: 'ev3Config',
+                constants: _option,
+                stream: true
+            })
+            .pipe(gulp.dest(basePaths.src + '/js'));
     });
 
     gulp.task('dist-clean', function() {
@@ -124,6 +135,7 @@ module.exports = function(basePaths) {
             'dist-copy-resources-img',
             'dist-copy-resources-data',
             'less',
+            'ev3:config',
             'dist-pre-inject',
             'dist-build-templates',
             'dist-inject',
