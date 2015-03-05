@@ -21,52 +21,6 @@ module.exports = function(basePaths) {
             .pipe(gulp.dest(basePaths.src + 'css'));
     });
 
-    // DOC
-
-    gulp.task('clean-doc', function() {
-        return $.del([
-            basePaths.docs
-        ], function(err, deletedFiles) {
-            console.log('Docs files deleted');
-        });
-    });
-
-    gulp.task('ng-doc', function() {
-        var options = {
-            startPage: '/accueil/accueil',
-            html5Mode: false,
-            bestMatch: true
-        };
-
-        return $.ngdocs.sections({
-            code: {
-                glob:[basePaths.src + 'js/**/*.js'],
-                api: true,
-                title: 'Code',
-                startPage: '/code/qos-rcbi'
-            },
-            accueil: {
-                glob: ['doc-src/*.ngdoc'],
-                title: 'QOS RCBI Frontend Documentation'
-            }
-        }).pipe($.ngdocs.process(options)).pipe(gulp.dest(basePaths.docs));
-    });
-
-    gulp.task('archi-graph', function() {
-        gulp.src(basePaths.src + 'js/**/*.js')
-            .pipe($.angularArchitectureGraph({
-                dest: basePaths.docs + 'img'
-            }));
-    });
-
-    gulp.task('doc', function() {
-        $.runSequence(
-            //'clean-doc',
-            'ng-doc'
-            //'archi-graph'
-        );
-    });
-
     // WATCHER
 
     gulp.task('watch', function() {

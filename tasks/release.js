@@ -18,7 +18,7 @@ module.exports = function(basePaths) {
     });
 
     gulp.task('plato', function() {
-        return plato.inspect(basePaths.src + 'js/**/*.js', 'reports/plato/', {}, function(){});
+        return plato.inspect(basePaths.src + 'js/**/*.js', 'reports/plato/', {}, function() {});
     });
 
     gulp.task('dist-clean', function() {
@@ -115,7 +115,6 @@ module.exports = function(basePaths) {
 
     gulp.task('build', function() {
         $.runSequence(
-            'tests',
             'todo',
             'plato',
             'js-hint',
