@@ -19,6 +19,6 @@ angular.module('devoxx-2015-mindstorms-demo-front', [
  * @description
  * A description of the controller
  */
-.controller('homeCtrl', ['', function() {
+.controller('homeCtrl', [function() {
 
 }]);
