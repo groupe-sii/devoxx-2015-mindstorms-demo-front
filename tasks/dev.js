@@ -52,7 +52,7 @@ module.exports = function(basePaths) {
         }).pipe($.ngdocs.process(options)).pipe(gulp.dest(basePaths.docs));
     });
 
-    gulp.task('archi-graph', function(){
+    gulp.task('archi-graph', function() {
         gulp.src(basePaths.src + 'js/**/*.js')
             .pipe($.angularArchitectureGraph({
                 dest: basePaths.docs + 'img'
@@ -73,7 +73,7 @@ module.exports = function(basePaths) {
         gulp.watch(basePaths.src + 'less/**/*.less', ['less']);
     });
 
-    gulp.task('connect:src', function(){
+    gulp.task('connect:src', function() {
         $.connect.server({
           root: 'src',
           port: 9000,
@@ -81,18 +81,10 @@ module.exports = function(basePaths) {
         });
     });
 
-    gulp.task('connect:dist', function(){
+    gulp.task('connect:dist', function() {
         $.connect.server({
           root: 'dist',
           port: 9000,
-          livereload: true
-        });
-    });
-
-     gulp.task('serve:docs', function(){
-        $.connect.server({
-          root: 'docs',
-          port: 8080,
           livereload: true
         });
     });
