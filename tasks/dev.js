@@ -30,7 +30,7 @@ module.exports = function(basePaths) {
     gulp.task('connect:src', function() {
         $.connect.server({
           root: 'src',
-          port: 9000,
+          port: 9090,
           livereload: true
         });
     });
@@ -38,7 +38,7 @@ module.exports = function(basePaths) {
     gulp.task('connect:dist', function() {
         $.connect.server({
           root: 'dist',
-          port: 9000,
+          port: 9090,
           livereload: true
         });
     });
