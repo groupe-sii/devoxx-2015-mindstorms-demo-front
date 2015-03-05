@@ -5,6 +5,7 @@ src/css
 src/fonts
 TODO.md
 src/js/templates.js
+src/js/constants.js
 docs
 report.xml
 reports
