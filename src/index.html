@@ -40,25 +40,48 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="page-header">
-                        <h1 id="type">Sensors values</h1>
+                        <h1>Sensors values</h1>
                     </div>
                 </div>
             </div>
 
-            <!-- Headings -->
-
             <div class="row">
                 <div class="col-lg-4">
                     <div class="bs-component">
-                        <p>Sensor 1 : {{sensorValues.sensor1}}</p>
-                        <p>Sensor 2 : {{sensorValues.sensor2}}</p>
+                        <p>Sensor 1 : {{ sensorValues.sensor1 }}</p>
+                        <p>Sensor 2 : {{ sensorValues.sensor2 }}</p>
                     </div>
                     <div>
                         <a href="#" class="btn btn-default" ng-click="startSensorListener();">Start reading sensors</a>
                         <a href="#" class="btn btn-default" ng-click="stopSensorListener();">Stop reading sensors</a>
-                    </div>
-                    <div>
                         <a href="#" class="btn btn-default" ng-click="startMotor();">Start motor</a>
+                        <a href="#" class="btn btn-default" ng-click="startTest();">Start test</a>
+                    </div>
+                </div>
+            </div>
+
+            <div ng-if="testStarted">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="page-header">
+                            <h1>Questions | Your score is : {{ score }}</h1>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" ng-if="!finished">
+                    <div class="col-lg-4">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3>Question {{ questionIndex }} : {{ question.label }}</h3>
+                            </div>
+                            <div class="panel-body">
+                                <ul class="row answers">
+                                    <li class="col-xs-6 btn btn-default" ng-repeat="answer in question.answers">{{ answer.label }}</li>
+                                </ul>
+                            </div>
+                            <div class="panel-footer">Result : {{ result }}</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -67,8 +90,8 @@
     </div>
 </body>
 
-<!-- TODO JS / Config with localhost or ev3Dev ip with context config -->
-<script src="http://10.42.0.50:3000/socket.io/socket.io.js"></script>
+<!-- TODO JS / Config with localhost or ev3Dev ip 10.42.0.50 with context config -->
+<script src="http://10.42.1.50:3000/socket.io/socket.io.js"></script>
 <!-- endbuild -->
 
 <!-- build:js js/external.js -->
@@ -81,6 +104,11 @@
 <script src="js/app.js"></script>
 <script src="js/constants.js"></script>
 <script src="js/templates.js"></script>
+<script src="js/factories/data-factory.js"></script>
+<script src="js/factories/socket-factory.js"></script>
+<script src="js/services/bootstrap.js"></script>
+<script src="js/services/data-service.js"></script>
+<script src="js/services/motor-service.js"></script>
 <!-- endbuild -->
 
 </html>
