@@ -27,6 +27,7 @@ module.exports = function(basePaths) {
         return $.ngConstant({
                 name: 'ev3Config',
                 constants: _option,
+                templatePath: 'config/tpls/constant.tpl.ejs',
                 stream: true
             })
             .pipe(gulp.dest(basePaths.src + '/js'));
