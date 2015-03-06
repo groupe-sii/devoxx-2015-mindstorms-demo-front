@@ -1,0 +1,60 @@
+{
+    "questions": [
+        {
+            "label": "Grand Central Terminal, Park Avenue, New York is the world's",
+            "answers": [
+                {
+                    "label": "largest railway station",
+                    "correct": true
+                },
+                {
+                    "label": "highest railway station",
+                    "correct": false
+                }
+            ],
+            "explanation": "TODO"
+        },
+        {
+            "label": "Which scientist discovered the radioactive element radium?",
+            "answers": [
+                {
+                    "label": "Isaac Newton",
+                    "correct": false
+                },
+                {
+                    "label": "Marie Curie",
+                    "correct": true
+                }
+            ],
+            "explanation": "TODO"
+        },
+        {
+            "label": "The Statue of Liberty of New York was a gift from",
+            "answers": [
+                {
+                    "label": "Spain",
+                    "correct": false
+                },
+                {
+                    "label": "France",
+                    "correct": true
+                }
+            ],
+            "explanation": "TODO"
+        },
+        {
+            "label": "Which Battle marked the end of Napoleon era",
+            "answers": [
+                {
+                    "label": "Vimeiro",
+                    "correct": false
+                },
+                {
+                    "label": "Waterloo",
+                    "correct": true
+                }
+            ],
+            "explanation": "TODO"
+        }
+    ]
+}
