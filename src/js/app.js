@@ -33,15 +33,21 @@ angular.module('devoxx-2015-mindstorms-demo-front', [
  * A description of the controller
  */
 .controller('homeCtrl', ['$scope', 'appSocketFactory', function($scope, appSocketFactory) {
-    console.log(appSocketFactory);
+    appSocketFactory.forward('sensorValue', $scope);
 
     $scope.startSensorListener = function() {
-        appSocketFactory.emit('readSensor', function() {
+        appSocketFactory.emit('startReadingSensors', function() {
             console.log('message readed by server');
         });
+    };
 
-        appSocketFactory.on('sensorValue', function(data) {
-            console.log('sensorValue: ', data);
+    $scope.stopSensorListener = function() {
+        appSocketFactory.emit('stopReadingSensors', function() {
+            console.log('message readed by server');
         });
     };
+
+    $scope.$on('socket:sensorValue', function(ev, data) {
+        $scope.sensorValues = data;
+    });
 }]);
