@@ -48,11 +48,11 @@
                 </div>
             </div>
 
-            <div ng-if="testStarted">
+            <div ng-class="{'show': testStarted}" class="hide">
                 <div class="row">
                     <div class="col-mg-12">
-                        <div class="page-header">
-                            <h1>Questions | Your score is : {{ score }}</h1>
+                        <div class="page-header text-center">
+                            <h1>Your score is : {{ score }}</h1>
                         </div>
                     </div>
                 </div>
@@ -60,8 +60,8 @@
                 <div class="row" ng-if="!finished">
                     <div class="col-mg-4">
                         <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h3>Question {{ questionIndex }} : {{ question.label }}</h3>
+                            <div class="panel-heading panel-question">
+                                <h3><b>Question {{ questionIndex }} : {{ question.label }}</b></h3>
                             </div>
                             <div class="panel-body">
                                 <ul class="row answers">
@@ -73,6 +73,15 @@
                                 </ul>
                             </div>
                             <div class="panel-footer">Result : {{ result }}</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" ng-if="finished">
+                    <div class="col-mg-12">
+                        <div class="text-center final-result">
+                            <h1 ng-if="finalResult" class="winner animated bounceIn">Winner !</h1>
+                            <h1 ng-if="!finalResult" class="looser animated bounceIn">Looser...</h1>
                         </div>
                     </div>
                 </div>
@@ -90,7 +99,7 @@
 </body>
 
 <!-- TODO JS / Config with localhost or ev3Dev ip 10.42.0.50 with context config -->
-<script src="http://localhost:3000/socket.io/socket.io.js"></script>
+<script src="http://10.42.0.50:3000/socket.io/socket.io.js"></script>
 <!-- endbuild -->
 
 <!-- build:js js/external.js -->

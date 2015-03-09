@@ -1,7 +1,7 @@
 {
     "questions": [
         {
-            "label": "Grand Central Terminal, Park Avenue, New York is the world's",
+            "label": "Grand Central Terminal, Park Avenue, New York is the world's ?",
             "answers": [
                 {
                     "label": "largest railway station",
@@ -15,7 +15,7 @@
             "explanation": "TODO"
         },
         {
-            "label": "Which scientist discovered the radioactive element radium?",
+            "label": "Which scientist discovered the radioactive element radium ?",
             "answers": [
                 {
                     "label": "Isaac Newton",
@@ -29,7 +29,7 @@
             "explanation": "TODO"
         },
         {
-            "label": "The Statue of Liberty of New York was a gift from",
+            "label": "The Statue of Liberty of New York was a gift from ?",
             "answers": [
                 {
                     "label": "Spain",
@@ -43,7 +43,7 @@
             "explanation": "TODO"
         },
         {
-            "label": "Which Battle marked the end of Napoleon era",
+            "label": "Which Battle marked the end of Napoleon era ?",
             "answers": [
                 {
                     "label": "Vimeiro",

@@ -32,6 +32,7 @@ angular.module('devoxx-2015-mindstorms-demo-front', [
 
     $scope.answered = false;
     $scope.answerResult = false;
+    $scope.finalResult = false;
 
     appSocketFactory.forward('sensorValue', $scope);
 
@@ -86,6 +87,7 @@ angular.module('devoxx-2015-mindstorms-demo-front', [
             if ($scope.questionIndex > questions.length) {
                 finishTest();
                 $scope.finished = true;
+                $scope.finalResult = true;
                 return;
             }
             $scope.question = questions[$scope.questionIndex - 1];
