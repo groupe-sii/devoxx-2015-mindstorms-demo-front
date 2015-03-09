@@ -9,6 +9,7 @@
     "angularjs": "~1.3",
     "bootstrap": "~3.3.2",
     "angular-resource": "~1.3.14",
-    "angular-socket-io": "~0.7.0"
+    "angular-socket-io": "~0.7.0",
+    "lodash": "~3.4.0"
   }
 }

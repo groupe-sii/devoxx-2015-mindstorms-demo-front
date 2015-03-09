@@ -90,7 +90,7 @@ angular.module('devoxx-2015-mindstorms-demo-front', [
         },
         finishTest = function() {
             console.log('finishTest');
-            if ($scope.score > MIN_WIN) {
+            if ($scope.score >= MIN_WIN) {
                 $scope.startMotor();
             }
         };
