@@ -55,6 +55,104 @@
                 }
             ],
             "explanation": "TODO"
+        },
+        {
+            "label": "The ozone layer restricts",
+            "answers": [
+                {
+                    "label": "Ultraviolet radiation",
+                    "correct": true
+                },
+                {
+                    "label": "Infrared radiation",
+                    "correct": false
+                }
+            ],
+            "explanation": "TODO"
+        },
+        {
+            "label": "Headquarters of UNO are situated at ?",
+            "answers": [
+                {
+                    "label": "New York, USA",
+                    "correct": true
+                },
+                {
+                    "label": "Geneva",
+                    "correct": false
+                }
+            ],
+            "explanation": "TODO"
+        },
+        {
+            "label": "What falling object is said to have inspired Isaac Newton's theories about gravity ?",
+            "answers": [
+                {
+                    "label": "Apple",
+                    "correct": true
+                },
+                {
+                    "label": "Orange",
+                    "correct": false
+                }
+            ],
+            "explanation": "TODO"
+        },
+        {
+            "label": "What color is a NYC taxi ?",
+            "answers": [
+                {
+                    "label": "Blue",
+                    "correct": false
+                },
+                {
+                    "label": "Yellow",
+                    "correct": true
+                }
+            ],
+            "explanation": "TODO"
+        },
+        {
+            "label": "What kind of reptile is the chameleon ?",
+            "answers": [
+                {
+                    "label": "Snake",
+                    "correct": false
+                },
+                {
+                    "label": "Lizard",
+                    "correct": true
+                }
+            ],
+            "explanation": "TODO"
+        },
+        {
+            "label": "The moon is ?",
+            "answers": [
+                {
+                    "label": "a planet",
+                    "correct": false
+                },
+                {
+                    "label": "a satellite",
+                    "correct": true
+                }
+            ],
+            "explanation": "TODO"
+        },
+        {
+            "label": " Who discovered magnetic field of electric current ?",
+            "answers": [
+                {
+                    "label": "Edison",
+                    "correct": false
+                },
+                {
+                    "label": "Faraday",
+                    "correct": true
+                }
+            ],
+            "explanation": "TODO"
         }
     ]
 }
