@@ -31,6 +31,7 @@ angular.module('devoxx-2015-mindstorms-demo-front', [
         MIN_WIN = 3;
 
     $scope.answered = false;
+    $scope.answerResult = false;
 
     appSocketFactory.forward('sensorValue', $scope);
 
@@ -42,12 +43,13 @@ angular.module('devoxx-2015-mindstorms-demo-front', [
 
             if ((data.sensor1 === 1 && $scope.question.answers[0].correct) || (data.sensor2 === 1 && $scope.question.answers[1].correct)) {
                 $scope.result = CORRECT_MESSAGE;
+                $scope.answerResult = true;
                 $scope.score += 1;
             } else {
                 $scope.result = INCORRECT_MESSAGE;
             }
 
-            setTimeout(nextQuestion, 3000);
+            setTimeout(nextQuestion, 2000);
         }
     });
 
@@ -80,6 +82,7 @@ angular.module('devoxx-2015-mindstorms-demo-front', [
     var questions = null,
         nextQuestion = function() {
             $scope.questionIndex += 1;
+            $scope.answered = $scope.answerResult = false;
             if ($scope.questionIndex > questions.length) {
                 finishTest();
                 $scope.finished = true;

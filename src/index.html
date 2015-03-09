@@ -38,7 +38,7 @@
 
         <div class="bs-docs-section">
             <div class="row">
-                <div class="col-lg-4">
+                <div class="col-mg-4">
                     <div>
                         <a href="#" class="btn btn-default" ng-click="startSensorListener();">Start reading sensors</a>
                         <a href="#" class="btn btn-default" ng-click="stopSensorListener();">Stop reading sensors</a>
@@ -50,7 +50,7 @@
 
             <div ng-if="testStarted">
                 <div class="row">
-                    <div class="col-lg-12">
+                    <div class="col-mg-12">
                         <div class="page-header">
                             <h1>Questions | Your score is : {{ score }}</h1>
                         </div>
@@ -58,14 +58,18 @@
                 </div>
 
                 <div class="row" ng-if="!finished">
-                    <div class="col-lg-4">
+                    <div class="col-mg-4">
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <h3>Question {{ questionIndex }} : {{ question.label }}</h3>
                             </div>
                             <div class="panel-body">
                                 <ul class="row answers">
-                                    <li class="col-xs-6 btn btn-default" ng-repeat="answer in question.answers">{{ answer.label }}</li>
+                                    <li class="col-xs-6 btn btn-default" 
+                                        ng-repeat="answer in question.answers" 
+                                        ng-class="{'good': (answered && answerResult && answer.correct), 'bad': (answered && !answerResult && !answer.correct)}">
+                                        {{ answer.label }}
+                                    </li>
                                 </ul>
                             </div>
                             <div class="panel-footer">Result : {{ result }}</div>
