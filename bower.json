@@ -11,6 +11,7 @@
     "angular-resource": "~1.3.14",
     "angular-socket-io": "~0.7.0",
     "lodash": "~3.4.0",
-    "animate.css": "~3.2.3"
+    "animate.css": "~3.2.3",
+    "angular-progress-arc": "~1.0.0"
   }
 }

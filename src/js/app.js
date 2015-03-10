@@ -12,15 +12,21 @@ angular.module('devoxx-2015-mindstorms-demo-front', [
     'btford.socket-io',
     'templates',
     'ev3Config',
+    'angular-progress-arc',
     'devoxx-2015-mindstorms-demo-front-services'
 ])
+.config(['progressArcDefaultsProvider', function(progressArcDefaultsProvider) {
+    progressArcDefaultsProvider
+        .setDefault('stroke', '#0059a2')
+        .setDefault('size', 40);
+}])
 /**
  * @ngdoc controller
  * @name devoxx-2015-mindstorms-demo-front.controller:homeCtrl
  * @description
  * A description of the controller
  */
-.controller('homeCtrl', ['$scope', 'appSocketFactory', 'MotorService', 'DataFactory', function($scope, appSocketFactory, MotorService, DataFactory) {
+.controller('homeCtrl', ['$scope', '$interval', '$timeout', 'appSocketFactory', 'MotorService', 'DataFactory', function($scope, $interval, $timeout, appSocketFactory, MotorService, DataFactory) {
 
     /**
      * Sensors stuff
@@ -28,11 +34,14 @@ angular.module('devoxx-2015-mindstorms-demo-front', [
 
     var CORRECT_MESSAGE = 'Correct !',
         INCORRECT_MESSAGE = 'Incorrect dude !',
-        MIN_WIN = 3;
+        MIN_WIN = 3,
+        TIME_ANSWER = 10,
+        _intervalTimer = null;
 
     $scope.answered = false;
     $scope.answerResult = false;
     $scope.finalResult = false;
+    $scope.timerAnswer = TIME_ANSWER;
 
     appSocketFactory.forward('sensorValue', $scope);
 
@@ -52,7 +61,10 @@ angular.module('devoxx-2015-mindstorms-demo-front', [
                 $scope.result = INCORRECT_MESSAGE;
             }
 
-            setTimeout(nextQuestion, 2000);
+            $timeout(function() {
+                $interval.cancel(_intervalTimer);
+                nextQuestion();
+            }, 2000);
         }
     };
 
@@ -86,13 +98,13 @@ angular.module('devoxx-2015-mindstorms-demo-front', [
 
     var questions = null,
         nextQuestion = function() {
+            startTimer();
             $scope.questionIndex += 1;
             $scope.answered = $scope.answerResult = false;
             appSocketFactory.forward('sensorValue', $scope);
             if ($scope.questionIndex > questions.length) {
                 finishTest();
                 $scope.finished = true;
-                $scope.finalResult = true;
                 return;
             }
             $scope.question = questions[$scope.questionIndex - 1];
@@ -100,9 +112,21 @@ angular.module('devoxx-2015-mindstorms-demo-front', [
         },
         finishTest = function() {
             appSocketFactory.removeAllListeners();
+            $interval.cancel(_intervalTimer);
             if ($scope.score >= MIN_WIN) {
+                $scope.finalResult = true;
                 $scope.startMotor();
             }
+        },
+        startTimer = function() {
+            $scope.timerAnswer = TIME_ANSWER;
+            _intervalTimer = $interval(function() {
+                $scope.timerAnswer -= 1;
+                if ($scope.timerAnswer === 0) {
+                    $interval.cancel(_intervalTimer);
+                    nextQuestion();
+                }
+            }, 1000);
         };
 
     $scope.startTest = function() {
@@ -115,6 +139,8 @@ angular.module('devoxx-2015-mindstorms-demo-front', [
         $scope.question = questions[$scope.questionIndex - 1];
 
         $scope.startSensorListener();
+
+        startTimer();
     };
 
 }]);
