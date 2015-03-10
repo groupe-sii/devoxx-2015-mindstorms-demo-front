@@ -36,11 +36,13 @@ angular.module('devoxx-2015-mindstorms-demo-front', [
 
     appSocketFactory.forward('sensorValue', $scope);
 
-    $scope.$on('socket:sensorValue', function(ev, data) {
+    var sensorListener = function(ev, data) {
         $scope.sensorValues = data;
 
         if (data.sensor1 === 1 || data.sensor2 === 1) {
             $scope.answered = true;
+
+            appSocketFactory.removeAllListeners();
 
             if ((data.sensor1 === 1 && $scope.question.answers[0].correct) || (data.sensor2 === 1 && $scope.question.answers[1].correct)) {
                 $scope.result = CORRECT_MESSAGE;
@@ -52,7 +54,9 @@ angular.module('devoxx-2015-mindstorms-demo-front', [
 
             setTimeout(nextQuestion, 2000);
         }
-    });
+    };
+
+    $scope.$on('socket:sensorValue', sensorListener);
 
     $scope.startSensorListener = function() {
         appSocketFactory.emit('startReadingSensors', function() {
@@ -84,6 +88,7 @@ angular.module('devoxx-2015-mindstorms-demo-front', [
         nextQuestion = function() {
             $scope.questionIndex += 1;
             $scope.answered = $scope.answerResult = false;
+            appSocketFactory.forward('sensorValue', $scope);
             if ($scope.questionIndex > questions.length) {
                 finishTest();
                 $scope.finished = true;
@@ -94,7 +99,7 @@ angular.module('devoxx-2015-mindstorms-demo-front', [
             $scope.result = '';
         },
         finishTest = function() {
-            console.log('finishTest');
+            appSocketFactory.removeAllListeners();
             if ($scope.score >= MIN_WIN) {
                 $scope.startMotor();
             }
