@@ -38,12 +38,12 @@
 
         <div class="bs-docs-section">
             <div class="row">
-                <div class="col-mg-4">
+                <div class="col-mg-4 text-center">
                     <div>
-                        <a href="#" class="btn btn-default" ng-click="startSensorListener();">Start reading sensors</a>
-                        <a href="#" class="btn btn-default" ng-click="stopSensorListener();">Stop reading sensors</a>
-                        <a href="#" class="btn btn-default" ng-click="startMotor();">Start motor</a>
-                        <a href="#" class="btn btn-default" ng-click="startTest();">Start test</a>
+                        <a href="#" class="btn btn-default btn-xs" ng-click="startSensorListener();">Start read sensors</a>
+                        <a href="#" class="btn btn-default btn-xs" ng-click="stopSensorListener();">Stop read sensors</a>
+                        <a href="#" class="btn btn-default btn-xs" ng-click="startMotor();">Start motor</a>
+                        <a href="#" class="btn btn-default btn-xs" ng-click="startTest();">Start test</a>
                     </div>
                 </div>
             </div>
@@ -59,7 +59,7 @@
 
                 <div class="row" ng-if="!finished">
                     <div class="col-mg-4">
-                        <div class="panel panel-default">
+                        <div class="panel panel-default questions-panel">
                             <div class="panel-heading panel-question">
                                 <h3><b>Question {{ questionIndex }} : {{ question.label }}</b></h3>
                             </div>
@@ -72,12 +72,14 @@
                                     </li>
                                 </ul>
                             </div>
+                            <!--
                             <div class="panel-footer">Result : {{ result }}</div>
+                            -->
                         </div>
                     </div>
                 </div>
 
-                <div class="row" ng-if="finished">
+                <div class="row finish-message" ng-if="finished">
                     <div class="col-mg-12">
                         <div class="text-center final-result">
                             <h1 ng-if="finalResult" class="winner animated bounceIn">Winner !</h1>
