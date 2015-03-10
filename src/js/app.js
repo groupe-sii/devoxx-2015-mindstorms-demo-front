@@ -48,6 +48,8 @@ angular.module('devoxx-2015-mindstorms-demo-front', [
     var sensorListener = function(ev, data) {
         $scope.sensorValues = data;
 
+        console.log('sensorListener');
+
         if (data.sensor1 === 1 || data.sensor2 === 1) {
             $scope.answered = true;
 
