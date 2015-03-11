@@ -36,12 +36,14 @@ angular.module('devoxx-2015-mindstorms-demo-front', [
         INCORRECT_MESSAGE = 'Incorrect dude !',
         MIN_WIN = 3,
         TIME_ANSWER = 10,
-        _intervalTimer = null;
+        _intervalTimer = null,
+        IMG_FOLDER = 'img/';
 
     $scope.answered = false;
     $scope.answerResult = false;
     $scope.finalResult = false;
     $scope.timerAnswer = TIME_ANSWER;
+    $scope.backgrdUrl = IMG_FOLDER + 'unsplash_5245b69bc5330_1.jpg';
 
     appSocketFactory.forward('sensorValue', $scope);
 
@@ -110,6 +112,7 @@ angular.module('devoxx-2015-mindstorms-demo-front', [
                 return;
             }
             $scope.question = questions[$scope.questionIndex - 1];
+            $scope.backgrdUrl = IMG_FOLDER + $scope.question.bckgrd;
             $scope.result = '';
         },
         finishTest = function() {

@@ -17,26 +17,86 @@
     <!-- endbuild -->
 </head>
 
-<body>
+<body ng-controller="homeCtrl">
 
-    <div class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <a href="../" class="navbar-brand">Devoxx 2015 SII-Ouest Lego Mindstorms Challenge</a>
+    <div class="backgrd" style="background: url({{backgrdUrl}}); background-size:cover;"></div>
+
+    <div class="main-container">
+        <div class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <a href="../" class="navbar-brand">Lego Mindstorms Quiz</a>
+                </div>
+                <ul class="nav navbar-right">
+                    <li>
+                        <a href="#" ng-click="startTest();">
+                            <img src="img/logo-sii.png" width="100">
+                        </a>
+                    </li>
+                </ul>
             </div>
-            <ul class="nav navbar-right">
-                <li>
-                    <a href="http://rennes.groupe-sii.com/fr" target="_blank">
-                        <img src="img/logo-sii.png" width="45">
-                    </a>
-                </li>
-            </ul>
         </div>
-    </div>
 
-    <div class="container" ng-controller="homeCtrl">
+        <div class="container">
 
-        <div class="bs-docs-section">
+            <div class="bs-docs-section">
+                <div ng-class="{'show': testStarted}" class="hide">
+                    <div class="row">
+                        <div class="page-header text-center">
+                            <h1>Score : {{ score }} / 5</h1>
+                        </div>
+                    </div>
+
+                    <div class="row" ng-if="!finished">
+                        <div class="col-md-8 col-md-offset-2">
+                            <div class="panel panel-default questions-panel">
+                                <div class="panel-heading panel-question">
+                                    <div class="row">
+                                        <div class="col-md-11">
+                                            <h3><b>Question {{ questionIndex }} : {{ question.label }}</b></h3>    
+                                        </div>
+                                        <div class="col-md-1">
+                                            <progress-arc
+                                                class="progress-arc"
+                                                background="#fff"
+                                                complete="timerAnswer/10"
+                                                stroke-width="50"
+                                                counter-clockwise="true">
+                                            </progress-arc>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel-body">
+                                    <ul class="row answers">
+                                        <li class="col-xs-6 btn btn-default" 
+                                            ng-repeat="answer in question.answers" 
+                                            ng-class="{'good': (answered && answerResult && answer.correct), 'bad': (answered && !answerResult && !answer.correct)}">
+                                            {{ answer.label }}
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!--
+                                <div class="panel-footer">Result : {{ result }}</div>
+                                -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row finish-message" ng-if="finished">
+                        <div class="col-md-8 col-md-offset-2">
+                            <div class="text-center final-result">
+                                <h1 ng-if="finalResult" class="winner animated bounceIn">Winner !</h1>
+                                <h1 ng-if="!finalResult" class="looser animated bounceIn">Looser...</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <footer class="footer">
+            <!--
             <div class="row text-center">
                 <div class="col-md-6 col-md-offset-3">
                     <div>
@@ -47,71 +107,17 @@
                     </div>
                 </div>
             </div>
-
-            <div ng-class="{'show': testStarted}" class="hide">
-                <div class="row">
-                    <div class="page-header text-center">
-                        <h1>Score : {{ score }} / 5</h1>
-                    </div>
-                </div>
-
-                <div class="row" ng-if="!finished">
-                    <div class="col-md-8 col-md-offset-2">
-                        <div class="panel panel-default questions-panel">
-                            <div class="panel-heading panel-question">
-                                <div class="row">
-                                    <div class="col-md-11">
-                                        <h3><b>Question {{ questionIndex }} : {{ question.label }}</b></h3>    
-                                    </div>
-                                    <div class="col-md-1">
-                                        <progress-arc
-                                            class="progress-arc"
-                                            complete="timerAnswer/10"
-                                            stroke-width="50"
-                                            counter-clockwise="true">
-                                        </progress-arc>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="panel-body">
-                                <ul class="row answers">
-                                    <li class="col-xs-6 btn btn-default" 
-                                        ng-repeat="answer in question.answers" 
-                                        ng-class="{'good': (answered && answerResult && answer.correct), 'bad': (answered && !answerResult && !answer.correct)}">
-                                        {{ answer.label }}
-                                    </li>
-                                </ul>
-                            </div>
-                            <!--
-                            <div class="panel-footer">Result : {{ result }}</div>
-                            -->
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row finish-message" ng-if="finished">
-                    <div class="col-md-8 col-md-offset-2">
-                        <div class="text-center final-result">
-                            <h1 ng-if="finalResult" class="winner animated bounceIn">Winner !</h1>
-                            <h1 ng-if="!finalResult" class="looser animated bounceIn">Looser...</h1>
-                        </div>
-                    </div>
-                </div>
+            -->
+            <div class="container text-center">
+                <p>Sensor 1 : {{ sensorValues.sensor1 || 'No data' }} | Sensor 2 : {{ sensorValues.sensor2 || 'No data' }}</p>
             </div>
-        </div>
-
+        </footer>
     </div>
-
-    <footer class="footer">
-        <div class="container">
-            <p>Sensor 1 : {{ sensorValues.sensor1 || 'No data' }} | Sensor 2 : {{ sensorValues.sensor2 || 'No data' }}</p>
-        </div>
-    </footer>
 
 </body>
 
 <!-- TODO JS / Config with localhost or ev3Dev ip 10.42.0.50 with context config -->
-<script src="http://10.42.0.50:3000/socket.io/socket.io.js"></script>
+<script src="http://10.42.1.50:3000/socket.io/socket.io.js"></script>
 <!-- endbuild -->
 
 <!-- build:js js/external.js -->

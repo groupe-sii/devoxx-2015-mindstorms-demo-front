@@ -14,6 +14,8 @@
     "gulp-csso": "^1.0.0",
     "gulp-filter": "^2.0.2",
     "gulp-htmlhint": "0.0.9",
+    "gulp-image-resize": "^0.6.0",
+    "gulp-imagemin": "^2.2.1",
     "gulp-jshint": "^1.9.2",
     "gulp-less": "^3.0.0",
     "gulp-load-plugins": "^0.8.0",

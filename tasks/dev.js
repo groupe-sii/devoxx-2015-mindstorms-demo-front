@@ -22,6 +22,14 @@ module.exports = function(basePaths) {
             .pipe(gulp.dest(basePaths.src + 'css'));
     });
 
+    gulp.task('resize-images', function() {
+        return gulp.src('src/img/*.jpg')
+            .pipe($.imageResize({
+              width: 2000
+            }))
+            .pipe(gulp.dest('src/img2'));
+    });
+
     // Dev config
 
     gulp.task('dev:config', function() {
