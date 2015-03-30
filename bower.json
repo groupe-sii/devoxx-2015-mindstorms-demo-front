@@ -12,6 +12,7 @@
     "angular-socket-io": "~0.7.0",
     "lodash": "~3.4.0",
     "animate.css": "~3.2.3",
-    "angular-progress-arc": "~1.0.0"
+    "angular-progress-arc": "~1.0.0",
+    "howler.js": "~1.1.25"
   }
 }
