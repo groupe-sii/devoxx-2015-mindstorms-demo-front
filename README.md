@@ -2,4 +2,12 @@
 
 ## Installation
 
+```
 npm install && bower install
+```
+
+## Run
+
+```
+gulp connect:src
+```
