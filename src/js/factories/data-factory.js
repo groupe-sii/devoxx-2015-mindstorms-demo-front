@@ -1,5 +1,7 @@
 'use strict';
 
+/*globals _ */
+
 /**
  * @ngdoc factory
  * @name devoxx-2015-mindstorms-demo-front.factory:DataFactory

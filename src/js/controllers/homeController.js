@@ -1,5 +1,7 @@
 'use strict';
 
+/*globals Howl */
+
 /**
  * @ngdoc controller
  * @name devoxx-2015-mindstorms-demo-front.controller:homeCtrl
@@ -27,14 +29,14 @@ angular.module('devoxx-2015-mindstorms-demo-front')
                 MIN_WIN = 3,
                 TIME_ANSWER = 10,
                 _intervalTimer = null,
-                IMG_FOLDER = 'img/';
+                IMG_FOLDER = 'assets/img/';
 
             $scope.answered = false;
             $scope.answerResult = false;
             $scope.finalResult = false;
             $scope.timerAnswer = TIME_ANSWER;
             $scope.backgrdUrl = {
-                background: "url(../img/unsplash_5245b69bc5330_1.jpg)"
+                background: 'url(../assets/img/unsplash_5245b69bc5330_1.jpg)'
             };
 
             appSocketFactory.forward('sensorValue', $scope);
@@ -66,15 +68,16 @@ angular.module('devoxx-2015-mindstorms-demo-front')
 
             var updateBackground = function() {
                 $scope.backgrdUrl = {
-                    background: "url(../" + IMG_FOLDER + $scope.question.bckgrd + ")"
+                    background: 'url(../"' + IMG_FOLDER + $scope.question.bckgrd + '")'
                 };
             };
 
             var playWinningSound = function(winner) {
-                var urlSound = (winner) ? 'assets/sounds/winning.mp3' : 'assets/sounds/fail.mp3';
-                var sound = new Howl({
-                    urls: [urlSound]
-                }).play();
+                var urlSound = (winner) ? 'assets/sounds/winning.mp3' : 'assets/sounds/fail.mp3',
+                    sound = new Howl({
+                        urls: [urlSound]
+                    });
+                sound.play();
             };
 
             $scope.$on('socket:sensorValue', sensorListener);
