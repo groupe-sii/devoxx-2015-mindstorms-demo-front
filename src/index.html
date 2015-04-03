@@ -17,9 +17,9 @@
     <!-- endbuild -->
 </head>
 
-<body ng-controller="homeController">
+<body ng-controller="HomeController as home">
 
-    <div class="backgrd" ng-style="backgrdUrl"></div>
+    <div class="backgrd" ng-style="home.backgrdUrl"></div>
 
     <div class="main-container">
         <div class="navbar navbar-default navbar-fixed-top">
@@ -29,7 +29,7 @@
                 </div>
                 <ul class="nav navbar-right">
                     <li>
-                        <a href="#" ng-click="startTest();">
+                        <a href="#" ng-click="home.startTest();">
                             <img src="assets/img/logo-sii.png" width="100">
                         </a>
                     </li>
@@ -40,25 +40,25 @@
         <div class="container">
 
             <div class="bs-docs-section">
-                <div ng-class="{'show': testStarted}" class="hide">
+                <div ng-class="{'show': home.testStarted}" class="hide">
                     <div class="row">
                         <div class="page-header text-center">
-                            <h1>Score : {{ score }} / 5</h1>
+                            <h1>Score : {{ home.score }} / 5</h1>
                         </div>
                     </div>
 
-                    <div class="row" ng-if="!finished">
+                    <div class="row" ng-if="!home.finished">
                             <div class="panel panel-default questions-panel">
                                 <div class="panel-heading panel-question">
                                     <div class="row">
                                         <div class="col-md-11">
-                                            <h3><b>Question {{ questionIndex }} : {{ question.label }}</b></h3>
+                                            <h3><b>Question {{ home.questionIndex }} : {{ home.question.label }}</b></h3>
                                         </div>
                                         <div class="col-md-1">
                                             <progress-arc
                                                 class="progress-arc"
                                                 background="#fff"
-                                                complete="timerAnswer/10"
+                                                complete="home.timerAnswer/10"
                                                 stroke-width="70"
                                                 size="70"
                                                 counter-clockwise="true">
@@ -69,8 +69,8 @@
                                 <div class="panel-body">
                                     <ul class="row answers">
                                         <li class="col-xs-6 btn btn-default"
-                                            ng-repeat="answer in question.answers"
-                                            ng-class="{'good': (answered && answerResult && answer.correct), 'bad': (answered && !answerResult && !answer.correct)}">
+                                            ng-repeat="answer in home.question.answers"
+                                            ng-class="{'good': (home.answered && home.answerResult && answer.correct), 'bad': (home.answered && !home.answerResult && !answer.correct)}">
                                             {{ answer.label }}
                                         </li>
                                     </ul>
@@ -81,11 +81,11 @@
                             </div>
                     </div>
 
-                    <div class="row finish-message" ng-if="finished">
+                    <div class="row finish-message" ng-if="home.finished">
                         <div class="col-md-8 col-md-offset-2">
                             <div class="text-center final-result">
-                                <h1 ng-if="finalResult" class="winner animated bounceIn">Winner !</h1>
-                                <h1 ng-if="!finalResult" class="looser animated bounceIn">Looser...</h1>
+                                <h1 ng-if="home.finalResult" class="winner animated bounceIn">Winner !</h1>
+                                <h1 ng-if="!home.finalResult" class="looser animated bounceIn">Looser...</h1>
                             </div>
                         </div>
                     </div>
@@ -108,7 +108,7 @@
             </div>
             -->
             <div class="container text-center">
-                <p>Sensor 1 : {{ sensorValues.sensor1 || 'No data' }} | Sensor 2 : {{ sensorValues.sensor2 || 'No data' }}</p>
+                <p>Sensor 1 : {{ home.sensorValues.sensor1 || 'No data' }} | Sensor 2 : {{ home.sensorValues.sensor2 || 'No data' }}</p>
             </div>
         </footer>
     </div>
