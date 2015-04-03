@@ -48,7 +48,6 @@
                     </div>
 
                     <div class="row" ng-if="!finished">
-                        <div class="col-md-8 col-md-offset-2">
                             <div class="panel panel-default questions-panel">
                                 <div class="panel-heading panel-question">
                                     <div class="row">
@@ -60,7 +59,8 @@
                                                 class="progress-arc"
                                                 background="#fff"
                                                 complete="timerAnswer/10"
-                                                stroke-width="50"
+                                                stroke-width="70"
+                                                size="70"
                                                 counter-clockwise="true">
                                             </progress-arc>
                                         </div>
@@ -79,7 +79,6 @@
                                 <div class="panel-footer">Result : {{ result }}</div>
                                 -->
                             </div>
-                        </div>
                     </div>
 
                     <div class="row finish-message" ng-if="finished">
@@ -117,7 +116,7 @@
 </body>
 
 <!-- TODO JS / Config with localhost or ev3Dev ip 10.42.0.50 with context config -->
-<script src="http://10.42.0.50:3000/socket.io/socket.io.js"></script>
+<script src="http://10.42.1.50:3000/socket.io/socket.io.js"></script>
 <!-- endbuild -->
 
 <!-- build:js js/external.js -->
