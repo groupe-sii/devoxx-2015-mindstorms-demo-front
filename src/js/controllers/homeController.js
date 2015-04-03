@@ -67,6 +67,7 @@ angular.module('devoxx-2015-mindstorms-demo-front')
             };
 
             var updateBackground = function() {
+                console.log('url(../"' + IMG_FOLDER + $scope.question.bckgrd + '")');
                 $scope.backgrdUrl = {
                     background: 'url(../"' + IMG_FOLDER + $scope.question.bckgrd + '")'
                 };
