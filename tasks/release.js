@@ -144,18 +144,21 @@ module.exports = function(basePaths) {
             version: '0.12.0',
             files: [basePaths.dist + '**/*'],
             appName: 'devoxx-2015-mindstorms-demo',
-            platforms: ['linux64'] // change this to 'win' for/on windows
+            platforms: ['linux64']
         });
 
-        // Log stuff you want
         nw.on('log', function(msg) {
             console.log('node-webkit-builder', msg);
         });
 
-        // Build returns a promise, return it so the task isn't called in parallel
         return nw.build().catch(function(err) {
             console.log('node-webkit-builder', err);
         });
+    });
+
+    gulp.task('dist-nw-mp3-linux-fix', function() {
+        return gulp.src('libffmpegsumo.so')
+            .pipe(gulp.dest('build/devoxx-2015-mindstorms-demo/linux64/'));
     });
 
     gulp.task('build', function() {
@@ -177,7 +180,8 @@ module.exports = function(basePaths) {
             'dist-clean-templates',
             'dist-clean-end',
             'dist-copy-nw-config',
-            'dist-nw'
+            'dist-nw',
+            'dist-nw-mp3-linux-fix'
         );
     });
 };
