@@ -3,10 +3,11 @@
 var gulp = require('gulp'),
     plato = require('plato'),
     $ = require('gulp-load-plugins')({
-        pattern: ['gulp-*', 'run-sequence', 'del'],
+        pattern: ['gulp-*', 'run-sequence', 'del', 'node-webkit-builder'],
         rename: {
             'gulp-angular-templatecache': 'templateCache',
-            'gulp-ng-constant': 'ngConstant'
+            'gulp-ng-constant': 'ngConstant',
+            'node-webkit-builder': 'nodeWebkitBuilder'
         }
     });
 
@@ -41,11 +42,11 @@ module.exports = function(basePaths) {
         });
     });
 
-    gulp.task('dist-copy-resources-img', function() {
+    gulp.task('dist-copy-resources', function() {
         return gulp.src([
-                basePaths.src + 'img/**/*'
+                basePaths.src + 'assets/**/*'
             ])
-            .pipe(gulp.dest(basePaths.dist + 'img'));
+            .pipe(gulp.dest(basePaths.dist + 'assets'));
     });
 
     gulp.task('dist-copy-resources-data', function() {
@@ -80,19 +81,19 @@ module.exports = function(basePaths) {
             .pipe(assets)
             .pipe($.rev())
 
-            .pipe(jsFilter)
+        .pipe(jsFilter)
             .pipe($.uglify())
             .pipe(jsFilter.restore())
 
-            .pipe(cssFilter)
+        .pipe(cssFilter)
             .pipe($.csso())
             .pipe(cssFilter.restore())
 
-            .pipe(assets.restore())
+        .pipe(assets.restore())
             .pipe($.useref())
             .pipe($.revReplace())
 
-            .pipe(htmlFilter)
+        .pipe(htmlFilter)
             .pipe($.minifyHtml({
                 empty: true,
                 spare: true,
@@ -101,7 +102,7 @@ module.exports = function(basePaths) {
             }))
             .pipe(htmlFilter.restore())
 
-            .pipe(gulp.dest(basePaths.dist));
+        .pipe(gulp.dest(basePaths.dist));
     });
 
     gulp.task('dist-post-inject', function() {
@@ -125,6 +126,38 @@ module.exports = function(basePaths) {
         });
     });
 
+    gulp.task('dist-zip', function() {
+        return gulp.src(basePaths.dist + '**/*')
+            .pipe($.zip('devoxx-2015-mindstorms.nw'))
+            .pipe(gulp.dest(basePaths.dist));
+    });
+
+    gulp.task('dist-copy-nw-config', function() {
+        return gulp.src([
+                basePaths.src + 'package.json'
+            ])
+            .pipe(gulp.dest(basePaths.dist));
+    });
+
+    gulp.task('dist-nw', function() {
+        var nw = new $.nodeWebkitBuilder({
+            version: '0.12.0',
+            files: [basePaths.dist + '**/*'],
+            appName: 'devoxx-2015-mindstorms-demo',
+            platforms: ['linux64'] // change this to 'win' for/on windows
+        });
+
+        // Log stuff you want
+        nw.on('log', function(msg) {
+            console.log('node-webkit-builder', msg);
+        });
+
+        // Build returns a promise, return it so the task isn't called in parallel
+        return nw.build().catch(function(err) {
+            console.log('node-webkit-builder', err);
+        });
+    });
+
     gulp.task('build', function() {
         $.runSequence(
             'todo',
@@ -133,7 +166,7 @@ module.exports = function(basePaths) {
             'less-lint',
             'html-hint',
             'dist-clean',
-            'dist-copy-resources-img',
+            'dist-copy-resources',
             'dist-copy-resources-data',
             'less',
             'ev3:config',
@@ -142,7 +175,9 @@ module.exports = function(basePaths) {
             'dist-inject',
             'dist-post-inject',
             'dist-clean-templates',
-            'dist-clean-end'
+            'dist-clean-end',
+            'dist-copy-nw-config',
+            'dist-nw'
         );
     });
 };

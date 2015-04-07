@@ -10,3 +10,5 @@ docs
 report.xml
 reports
 lcov.info
+cache
+build
