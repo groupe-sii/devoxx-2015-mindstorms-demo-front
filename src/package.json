@@ -1,0 +1,13 @@
+{
+  "name": "Devoxx 2015 - Mindstorm demo",
+  "version": "0.0.0",
+  "main": "index.html",
+  "window": {
+    "toolbar": false,
+    "position": "center",
+    "resizable": false,
+    "fullscreen": true,
+    "min_width": 1000,
+    "min_height": 800
+  }
+}
