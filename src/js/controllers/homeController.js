@@ -41,8 +41,6 @@ angular.module('devoxx-2015-mindstorms-demo-front')
                 background: 'url(assets/img/unsplash_5245b69bc5330_1.jpg)'
             };
 
-            appSocketFactory.forward('sensorValue', $scope);
-
             var sensorListener = function(ev, data) {
                 vm.sensorValues = data;
 
@@ -155,6 +153,8 @@ angular.module('devoxx-2015-mindstorms-demo-front')
 
                 questions = DataFactory.get();
                 vm.question = questions[vm.questionIndex - 1];
+
+                appSocketFactory.forward('sensorValue', $scope);
 
                 vm.startSensorListener();
                 updateBackground();
