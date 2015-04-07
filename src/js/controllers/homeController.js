@@ -38,7 +38,7 @@ angular.module('devoxx-2015-mindstorms-demo-front')
             vm.timerAnswer = TIME_ANSWER;
             vm.question = {};
             vm.backgrdUrl = {
-                background: 'url(../assets/img/unsplash_5245b69bc5330_1.jpg)'
+                background: 'url(assets/img/unsplash_5245b69bc5330_1.jpg)'
             };
 
             appSocketFactory.forward('sensorValue', $scope);
@@ -70,7 +70,7 @@ angular.module('devoxx-2015-mindstorms-demo-front')
 
             var updateBackground = function() {
                 vm.backgrdUrl = {
-                    background: 'url(../' + IMG_FOLDER + vm.question.bckgrd + ')'
+                    background: 'url(' + IMG_FOLDER + vm.question.bckgrd + ')'
                 };
             };
 
